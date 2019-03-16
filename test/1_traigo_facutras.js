@@ -18,7 +18,7 @@ contract('TraigoFacturas', async (accounts) => {
   });
 
   it('should input one entry', async () => {
-    await traigoFacturas.newEntry()
+    await traigoFacturas.newEntry();
 
     const index = await traigoFacturas.index();
     assert.equal(index, 1);
@@ -29,5 +29,17 @@ contract('TraigoFacturas', async (accounts) => {
 
     const emptyEntry = await traigoFacturas.entries(1);
     assert.equal(emptyEntry[0], 0);
+  });
+
+  it('should input and close one entry', async () => {
+    await traigoFacturas.newEntry();
+
+    await traigoFacturas.closeEntry(0);
+
+    const entry = await traigoFacturas.entries(0);
+    assert.equal(entry[1], false);
+
+    const index = await traigoFacturas.index();
+    assert.equal(index, 1);
   });
 });
