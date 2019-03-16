@@ -1,0 +1,7 @@
+{
+  "name": "traigo-facturas",
+  "version": "1.0.0",
+  "devDependencies": {
+    "assert": "^1.4.1"
+  }
+}
