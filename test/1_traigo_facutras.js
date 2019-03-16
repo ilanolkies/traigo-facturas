@@ -59,4 +59,13 @@ contract('TraigoFacturas', async (accounts) => {
     assert.equal(event, 'CloseEntry');
     assert.equal(index, 0);
   });
+
+  it('should only close open auctions', async () => {
+    assert.rejects(traigoFacturas.closeEntry(0));
+
+    await traigoFacturas.newEntry();
+    await traigoFacturas.closeEntry(0);
+
+    assert.rejects(traigoFacturas.closeEntry(0));
+  });
 });

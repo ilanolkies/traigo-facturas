@@ -28,6 +28,7 @@ contract TraigoFacturas {
 
     function closeEntry (uint _index) public {
         Entry storage entry = entries[_index];
+        require(entry.open);
         entry.open = false;
 
         emit CloseEntry(_index);
