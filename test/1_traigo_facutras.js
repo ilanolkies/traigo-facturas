@@ -14,7 +14,7 @@ contract('TraigoFacturas', async (accounts) => {
     assert.equal(index, 0);
 
     const entry = await traigoFacturas.entries(0);
-    assert.equal(entry, 0);
+    assert.equal(entry[0], 0);
   });
 
   it('should input one entry', async () => {
@@ -24,9 +24,10 @@ contract('TraigoFacturas', async (accounts) => {
     assert.equal(index, 1);
 
     const entry = await traigoFacturas.entries(0);
-    assert.notEqual(entry, 0);
+    assert.notEqual(entry[0], 0);
+    assert.equal(entry[1], true);
 
     const emptyEntry = await traigoFacturas.entries(1);
-    assert.equal(emptyEntry, 0);
+    assert.equal(emptyEntry[0], 0);
   });
 });

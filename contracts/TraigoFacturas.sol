@@ -5,6 +5,7 @@ contract TraigoFacturas {
 
     struct Entry {
         uint date;
+        bool open;
     }
 
     uint public index;
@@ -18,6 +19,7 @@ contract TraigoFacturas {
     function newEntry () public {
         Entry storage entry = entries[index];
         entry.date = now;
+        entry.open = true;
 
         index = index + 1;
         emit NewEntry();
